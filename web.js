@@ -37,6 +37,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	        }
 	        
 	        if(message.body === 'Weather') {
+	        	weather = require("weather-js")
 	        	try {
     				weather.find({search: 'Austin, TX', degreeType: 'F'}, function(err, result) {
 						if(err) console.log(err);
@@ -54,6 +55,28 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				}
 	        	
 	        }
+			
+			if(message.body.substring(0,6) === 'Weather') {
+				var city = message.body.substring(7,message.body.length)
+				try {
+    				weather.find({search: city, degreeType: 'F'}, function(err, result) {
+						if(err) console.log(err);
+						location = "Info for " + result[0].current.observationpoint
+						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
+						weather = "It is " + result[0].current.skytext
+						response = location + "\n\n" + temp + "\n" + weather
+						weather_latest = response;
+						api.sendMessage(response, message.threadID);
+					});
+				}
+				catch(err) {
+    				api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_latest, message.threadID);
+					console.log(err)
+				}
+				
+			}	        
+	        
+
   //      }
         
         
