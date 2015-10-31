@@ -56,7 +56,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	        	
 	        }
 			if(message.body !== 'Weather' && message.body.substring(0,7) === 'Weather') {
-				var city = message.body.substring(7,message.body.length)
+				var city = message.body.substring(8,message.body.length)
 				try {
     				weather.find({search: city, degreeType: 'F'}, function(err, result) {
 						if(err) console.log(err);
