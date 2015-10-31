@@ -26,9 +26,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
         
     	    if(message.body === 'NFL') {
 				nflScores.refresh(function(err, scores) {
+				    var games = ""
 				    for (i = 0; i < scores.gms.length; i++) { 
-						console.log(scores.gms[i].vnn + " at " + scores.gms[i].hnn);
+				        games = games + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
 					}
+					api.sendMessage(games, message.threadID);
 				});
 	        }
   //      }
