@@ -1,6 +1,7 @@
 var login = require("facebook-chat-api");
 var nflScores = require("nfl_scores");
 var weather = require("weather-js")
+var weather_latest = ""
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -43,11 +44,12 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
 						weather = "It is " + result[0].current.skytext
 						response = location + "\n\n" + temp + "\n" + weather
+						weather_latest = response;
 						api.sendMessage(response, message.threadID);
 					});
 				}
 				catch(err) {
-    				api.sendMessage("Failed to get weather", message.threadID);
+    				api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_latest, message.threadID);
 					console.log(err)
 				}
 	        	
