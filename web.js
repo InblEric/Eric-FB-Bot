@@ -1,5 +1,6 @@
 var login = require("facebook-chat-api");
 var nflScores = require("nfl_scores");
+var weather = require("weather-js")
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -31,6 +32,16 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				        games = games + scores.gms[i].d + ": " + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
 					}
 					api.sendMessage(games, message.threadID);
+				});
+	        }
+	        
+	        if(message.body === 'Weather') {
+	        	weather.find({search: 'Austin, TX', degreeType: 'F'}, function(err, result) {
+					if(err) console.log(err);
+					temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
+					weather = "It is " + result[0].current.skytext
+					response = temp + "\n\n" + weather
+					api.sendMessage(response, message.threadID);
 				});
 	        }
   //      }
