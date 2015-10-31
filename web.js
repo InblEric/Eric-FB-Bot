@@ -48,6 +48,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				}
 				catch(err) {
     				api.sendMessage("Failed to get weather", message.threadID);
+					console.log(err)
 				}
 	        	
 	        }
