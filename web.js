@@ -14,7 +14,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
  
     api.listen(function callback(err, message) {
         // api.sendMessage(message.body, message.threadID);
-        if(message.type == "body") {
+//        if(message.type == "body") {
 	        if(message.body === 'Matt Fact') {
         	      var item = items[Math.floor(Math.random()*items.length)];
     	          api.sendMessage(item, message.threadID);
@@ -31,7 +31,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					}
 				});
 	        }
-        }
+  //      }
         
         
     });
