@@ -10,13 +10,10 @@ var items=[
 "Hello from Matt Facts! Fact - Matt graduated with two degrees from the University of Texas at Austin. Send 'STOP' to stop receiving these messages."
 ]
 
-// Create simple echo bot 
 login({email: process.env.EM, password: process.env.FP}, function callback (err, api) {
     if(err) return console.error(err);
  
     api.listen(function callback(err, message) {
-        // api.sendMessage(message.body, message.threadID);
-//        if(message.type == "body") {
 	        if(message.body === 'Matt Fact') {
         	      var item = items[Math.floor(Math.random()*items.length)];
     	          api.sendMessage(item, message.threadID);
@@ -56,6 +53,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	        	
 	        }
 			if(message.body !== 'Weather' && message.body.substring(0,7) === 'Weather') {
+				weather = require("weather-js")
 				var city = message.body.substring(8,message.body.length)
 				try {
     				weather.find({search: city, degreeType: 'F'}, function(err, result) {
@@ -80,7 +78,6 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 			}	        
 	        
 
-  //      }
         
         
     });
