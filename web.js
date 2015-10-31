@@ -36,13 +36,19 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	        }
 	        
 	        if(message.body === 'Weather') {
-	        	weather.find({search: 'Austin, TX', degreeType: 'F'}, function(err, result) {
-					if(err) console.log(err);
-					temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
-					weather = "It is " + result[0].current.skytext
-					response = temp + "\n\n" + weather
-					api.sendMessage(response, message.threadID);
-				});
+	        	try {
+    				weather.find({search: 'Austin, TX', degreeType: 'F'}, function(err, result) {
+						if(err) console.log(err);
+						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
+						weather = "It is " + result[0].current.skytext
+						response = temp + "\n\n" + weather
+						api.sendMessage(response, message.threadID);
+					});
+				}
+				catch(err) {
+    				api.sendMessage("Failed to get weather", message.threadID);
+				}
+	        	
 	        }
   //      }
         
