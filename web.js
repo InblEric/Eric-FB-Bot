@@ -28,7 +28,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				nflScores.refresh(function(err, scores) {
 				    var games = ""
 				    for (i = 0; i < scores.gms.length; i++) { 
-				        games = games + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
+				        games = games + scores.gms[i].d + ": " + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
 					}
 					api.sendMessage(games, message.threadID);
 				});
