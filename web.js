@@ -2,6 +2,7 @@ var login = require("facebook-chat-api");
 var nflScores = require("nfl_scores");
 var weather = require("weather-js")
 var weather_latest = ""
+var weather_dict = {}
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -55,9 +56,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				}
 	        	
 	        }
-			console.log(message.body)
-			console.log(message.body.substring(0,6))
-			if(message.body !== 'Weather' && message.body.substring(0,6) === 'Weather') {
+			if(message.body !== 'Weather' && message.body.substring(0,7) === 'Weather') {
 				var city = message.body.substring(7,message.body.length)
 				try {
     				weather.find({search: city, degreeType: 'F'}, function(err, result) {
@@ -66,12 +65,18 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
 						weather = "It is " + result[0].current.skytext
 						response = location + "\n\n" + temp + "\n" + weather
-						weather_latest = response;
+						weather_dict[city] = response;
 						api.sendMessage(response, message.threadID);
 					});
 				}
 				catch(err) {
-    				api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_latest, message.threadID);
+				    try {
+    					api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_dict[city], message.threadID);
+    				}
+    				catch(err) {
+    					api.sendMessage("No recent weather for " + city, message.threadID);
+    					console.log(err)
+    				}
 					console.log(err)
 				}
 				
