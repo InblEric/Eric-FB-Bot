@@ -39,9 +39,10 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	        	try {
     				weather.find({search: 'Austin, TX', degreeType: 'F'}, function(err, result) {
 						if(err) console.log(err);
+						location = "Info for " + result[0].current.observationpoint
 						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
 						weather = "It is " + result[0].current.skytext
-						response = temp + "\n\n" + weather
+						response = location + "\n\n" + temp + "\n" + weather
 						api.sendMessage(response, message.threadID);
 					});
 				}
