@@ -1,7 +1,6 @@
 var login = require("facebook-chat-api");
 var nflScores = require("nfl_scores");
 var weather = require("weather-js")
-var weather_latest = ""
 var weather_dict = {}
  
 var items=[
@@ -46,12 +45,12 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 						temp = "It is currently " + result[0].current.temperature + " degrees " + result[0].location.degreetype
 						weather = "It is " + result[0].current.skytext
 						response = location + "\n\n" + temp + "\n" + weather
-						weather_latest = response;
+						weather_dict['Austin, TX'] = response;
 						api.sendMessage(response, message.threadID);
 					});
 				}
 				catch(err) {
-    				api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_latest, message.threadID);
+    				api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_dict['Austin, TX'], message.threadID);
 					console.log(err)
 				}
 	        	
@@ -70,14 +69,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					});
 				}
 				catch(err) {
-				    try {
-    					api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_dict[city], message.threadID);
-    				}
-    				catch(err) {
-    					api.sendMessage("No recent weather for " + city, message.threadID);
-    					console.log(err)
-    				}
-					console.log(err)
+				    if(typeof weather_dict[city] === 'undefined') {
+				    	api.sendMessage("No recent weather for " + city, message.threadID);
+				    } else {
+					    api.sendMessage("Failed to get weather, here is the most recent:\n" + weather_dict[city], message.threadID);
+				    }
 				}
 				
 			}	        
