@@ -69,6 +69,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					});
 				}
 				catch(err) {
+				    console.log(err)
 				    if(typeof weather_dict[city] === 'undefined') {
 				    	api.sendMessage("No recent weather for " + city, message.threadID);
 				    } else {
