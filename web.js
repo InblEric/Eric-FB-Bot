@@ -27,7 +27,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				nflScores.refresh(function(err, scores) {
 				    var games = ""
 				    for (i = 0; i < scores.gms.length; i++) { 
-				        games = games + scores.gms[i].d + ": " + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
+				        games = games + scores.gms[i].d + ", " + scores.gms[i].t + ": " + scores.gms[i].vnn + " at " + scores.gms[i].hnn + "\n"
 					}
 					api.sendMessage(games, message.threadID);
 				});
@@ -75,7 +75,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				    }
 				}
 				
-			}	        
+			}	      
+			
+			if(message.body === 'Does OU still suck?') {
+				api.sendMessage("Yes.", message.threadID);
+			}  
 	        
 
         
