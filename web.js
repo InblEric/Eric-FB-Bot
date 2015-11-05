@@ -29,6 +29,8 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    }
 	        if(message.body === 'STOP') {
             	api.sendMessage("'STOP' is an unrecognized command. Send 'STOP' to stop receiving these messages.", message.threadID);
+            	var item = items[Math.floor(Math.random()*items.length)];
+    	        api.sendMessage(item, message.threadID);
         	}
         
     	    if(message.body === 'NFL') {
