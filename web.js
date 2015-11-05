@@ -7,7 +7,16 @@ var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
 "Hello from Matt Facts! Fact - You might not know that Matt is a big fan of League of Legends, a popular online video game. Send 'STOP' to stop receiving these messages.",
 "Hello from Matt Facts! Fact - Matt was born in Thailand and his parents live in Hawaii. Send 'STOP' to stop receiving these messages.",
-"Hello from Matt Facts! Fact - Matt graduated with two degrees from the University of Texas at Austin. Send 'STOP' to stop receiving these messages."
+"Hello from Matt Facts! Fact - Matt graduated with two degrees from the University of Texas at Austin. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Matt’s favorite animal is a red panda. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Matt is a fan of Electronic Dance Music, otherwise known as EDM. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – One of Matt’s favorite authors is Kurt Vonnegut. He also enjoys the Walking Dead graphic novels and shampoo bottles. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Matt’s favorite meal is a #6 from Jimmy John’s. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Matt enjoys the simple pleasure of appletinis. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Matthew Dodson never picks up the telephone. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Fantasy sports is not Matt's Forte. Send 'STOP' to stop receiving these messages.",
+"Hello from Matt Facts! Fact – Although he is mostly of Polish descent, Matt would have you believe he is 100% German. Send 'STOP' to stop receiving these messages.",
+""
 ]
 
 login({email: process.env.EM, password: process.env.FP}, function callback (err, api) {
