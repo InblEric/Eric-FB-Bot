@@ -15,8 +15,7 @@ var items=[
 "Hello from Matt Facts! Fact – Matt enjoys the simple pleasure of appletinis. Send 'STOP' to stop receiving these messages.",
 "Hello from Matt Facts! Fact – Matthew Dodson never picks up the telephone. Send 'STOP' to stop receiving these messages.",
 "Hello from Matt Facts! Fact – Fantasy sports is not Matt's Forte. Send 'STOP' to stop receiving these messages.",
-"Hello from Matt Facts! Fact – Although he is mostly of Polish descent, Matt would have you believe he is 100% German. Send 'STOP' to stop receiving these messages.",
-""
+"Hello from Matt Facts! Fact – Although he is mostly of Polish descent, Matt would have you believe he is 100% German. Send 'STOP' to stop receiving these messages."
 ]
 
 login({email: process.env.EM, password: process.env.FP}, function callback (err, api) {
