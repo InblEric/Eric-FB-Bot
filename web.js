@@ -53,7 +53,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 						weather = "It is " + result[0].current.skytext
 						response = location + "\n\n" + temp + "\n" + weather
 						weather_dict['Austin, TX'] = response;
+						high = result[0].forecast[0]['high']
+						low = result[0].forecast[0]['low']						
 						api.sendMessage(response, message.threadID);
+						api.sendMessage("High: " + high + "\nLow: " + low)
+						
 					});
 				}
 				catch(err) {
@@ -73,7 +77,10 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 						weather = "It is " + result[0].current.skytext
 						response = location + "\n\n" + temp + "\n" + weather
 						weather_dict[city] = response;
+						high = result[0].forecast[0]['high']
+						low = result[0].forecast[0]['low']						
 						api.sendMessage(response, message.threadID);
+						api.sendMessage("High: " + high + "\nLow: " + low)
 					});
 				}
 				catch(err) {
