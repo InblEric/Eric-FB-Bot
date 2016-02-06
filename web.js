@@ -76,6 +76,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					console.log(items.slice(0, 1));
     	    	
     	    		for (var person in items) {
+    	    			console.log(person);
     	    			var item = ("" + person[0].toString() + ": " + person[1].toString()).toString();
     	    			console.log(item);
     	    			api.sendMessage(item, message.threadID);
