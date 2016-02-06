@@ -61,12 +61,17 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    }
     	    
     	    if(message.body === 'stats') {
-    	    	for (var key in posts_dict) {
-					if (posts_dict.hasOwnProperty(key)) {
-    					var message = "" + key.toString() + " " + posts_dict[key]     				
-    					api.sendMessage(message, message.threadID);
-  					}
+    	    	try {
+	    	    	for (var key in posts_dict) {
+						if (posts_dict.hasOwnProperty(key)) {
+    						var message = "" + key.toString() + " " + posts_dict[key]     				
+    						api.sendMessage(message, message.threadID);
+  						}
+					}
 				}
+				catch(err) {
+					console.log(err)
+				} 
     	    }
     
 	        if(message.body === 'Matt Fact') {
