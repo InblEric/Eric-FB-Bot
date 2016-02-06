@@ -48,7 +48,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 	    	
 	    	if(message.body === 'test') {
 	    		try {
-					var item = posts_dict[(message.senderName).toString()]       	      
+					var item = (posts_dict[(message.senderName).toString()]).toString()       	      
     		        api.sendMessage(item, message.threadID);	
     		    }
     		    catch(err) {
