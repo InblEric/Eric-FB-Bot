@@ -64,8 +64,9 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    	try {
 	    	    	for (var key in posts_dict) {
 						if (posts_dict.hasOwnProperty(key)) {
-    						var message = ("" + key.toString() + " " + (posts_dict[key].toString())).toString()     				
-    				//		api.sendMessage(message, message.threadID);
+							var message = key.toString()
+    						//var message = ("" + key.toString() + " " + (posts_dict[key].toString())).toString()     				
+    						api.sendMessage(message, message.threadID);
   						}
 					}
 				}
