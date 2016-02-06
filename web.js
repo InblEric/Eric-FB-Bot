@@ -63,7 +63,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    }*/
     	    
     	    //if(message.body === 'stats') {
-    	    if (posts >= 25) {
+    	    if (posts >= 100) {
     	        posts = 0;
     	    	try {
     	    		/*
@@ -94,7 +94,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					console.log(sortable)
 					sortable.sort(function(a, b) {return b[1] - a[1]})
 					console.log(sortable)
-					var item = "Top posters in last 25 posts:\n"
+					var item = "Top posters in last 100 posts:\n"
 					for (var i=0; i < sortable.length; i++) {					    
 						
 					    item = item + ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString() + "\n").toString();
