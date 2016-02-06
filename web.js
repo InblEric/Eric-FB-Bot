@@ -75,13 +75,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					
 					console.log(items.slice(0, 1));
     	    	
-    	    		for (var person in items) {
-    	    			console.log(person);
-    	    			var item = ("" + person[0].toString() + ": " + person[1].toString()).toString();
-    	    			console.log(item);
-    	    			api.sendMessage(item, message.threadID);
-    	    		}
-    	    	
+    	    		for (var i=0; i < items.length; i++) {
+					    console.log(items[i]);
+					    //var item = ("" + person[0].toString() + ": " + person[1].toString()).toString();
+					    api.sendMessage(items[i], message.threadID);
+					}
     	    	
 	    	    	//for (var key in posts_dict) {
 						//if (posts_dict.hasOwnProperty(key)) {
