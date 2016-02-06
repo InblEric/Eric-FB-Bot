@@ -24,18 +24,18 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
  
     api.listen(function callback(err, message) {
     
-    		api.sendMessage(message.senderName, message.threadID)
+    		api.sendMessage((message.senderName).toString(), message.threadID)
     
-    		if (posts_dict[message.senderName]) {
-	    		posts_dict[message.senderName]++;
-	    	} else {
-	    		posts_dict[message.senderName] = 1;
-	    	}
+    		//if (posts_dict[message.senderName]) {
+	    	//	posts_dict[message.senderName]++;
+	    	//} else {
+	    	//	posts_dict[message.senderName] = 1;
+	    	//}
 	    	
-	    	if(message.body === 'test') {
-				var item = posts_dict[message.senderName]       	      
-    	        api.sendMessage(item, message.threadID);	
-    	    }
+	    	//if(message.body === 'test') {
+			//	var item = posts_dict[message.senderName]       	      
+    	    //  api.sendMessage(item, message.threadID);	
+    	    //}
     
 	        if(message.body === 'Matt Fact') {
         	      var item = items[Math.floor(Math.random()*items.length)];
