@@ -2,6 +2,7 @@ var login = require("facebook-chat-api");
 var nflScores = require("nfl_scores");
 var weather = require("weather-js")
 var weather_dict = {}
+var posts_dict = {}
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -22,6 +23,18 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     if(err) return console.error(err);
  
     api.listen(function callback(err, message) {
+    
+    		if (message.senderName in posts_dict) {
+	    		posts_dict[message.senderName]++;
+	    	} else {
+	    		posts_dict[message.senderName] = 1;
+	    	}
+	    	
+	    	if(message.body === 'test') {
+				var item = posts_dict        	      
+    	        api.sendMessage(item, message.threadID);	
+    	    }
+    
 	        if(message.body === 'Matt Fact') {
         	      var item = items[Math.floor(Math.random()*items.length)];
     	          api.sendMessage(item, message.threadID);
