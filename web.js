@@ -72,6 +72,8 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					items.sort(function(first, second) {
 					    return second[1] - first[1];
 					});
+					
+					console.log(items.slice(0, 1));
     	    	
     	    		for (var person in items) {
     	    			var item = ("" + person[0].toString() + ": " + person[1].toString()).toString()
