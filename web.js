@@ -26,14 +26,14 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     
     		//api.sendMessage((message.senderName).toString(), message.threadID)
     
-    		if (posts_dict[message.senderName]) {
-	    		posts_dict[message.senderName]++;
+    		if (posts_dict[(message.senderName).toString()]) {
+	    		posts_dict[(message.senderName).toString()]++;
 	    	} else {
-	    		posts_dict[message.senderName] = 1;
+	    		posts_dict[(message.senderName).toString()] = 1;
 	    	}
 	    	
 	    	if(message.body === 'test') {
-				var item = posts_dict[message.senderName]       	      
+				var item = posts_dict[(message.senderName).toString()]       	      
     	        api.sendMessage(item, message.threadID);	
     	    }
     
