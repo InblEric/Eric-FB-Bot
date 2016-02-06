@@ -26,8 +26,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     
     
     		try {
-    			var sender = (message.senderName).toString();
-    			api.sendMessage(sender, message.threadID);
+    			var sender = (message.senderName).toString();    			
     			if (posts_dict.hasOwnProperty((message.senderName).toString())) {
 	    			posts_dict[(message.senderName).toString()]++;
 			    } else {
