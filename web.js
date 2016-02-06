@@ -84,12 +84,14 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					*/
 					
 					var sortable = [];
-					for (var person in posts_dict)
+					for (var person in posts_dict) {
 				    	sortable.push([person, posts_dict[person]])
+				    }
 					console.log(sortable)
 					sortable.sort(function(a, b) {return b[1] - a[1]})
 					console.log(sortable)
 					for (var i=0; i < sortable.length; i++) {					    
+						console.log(sortable[i]);
 					    var item = ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString()).toString();
 					    api.sendMessage(item, message.threadID);
 					}
