@@ -24,7 +24,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
  
     api.listen(function callback(err, message) {
     
-    		api.sendMessage((message.senderName).toString(), message.threadID)
+    		//api.sendMessage((message.senderName).toString(), message.threadID)
     
     		//if (posts_dict[message.senderName]) {
 	    	//	posts_dict[message.senderName]++;
