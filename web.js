@@ -62,13 +62,29 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    
     	    if(message.body === 'stats') {
     	    	try {
-	    	    	for (var key in posts_dict) {
-						if (posts_dict.hasOwnProperty(key)) {
+    	    	
+    	    		// Create items array
+					var items = Object.keys(posts_dict).map(function(key) {
+					    return [key, posts_dict[key]];
+					});
+
+					// Sort the array based on the second element
+					items.sort(function(first, second) {
+					    return second[1] - first[1];
+					});
+    	    	
+    	    		for (var person in items) {
+    	    			var item = ("" + person[0].toString() + ": " + person[1].toString()).toString()
+    	    		}
+    	    	
+    	    	
+	    	    	//for (var key in posts_dict) {
+						//if (posts_dict.hasOwnProperty(key)) {
 							//var item = key.toString()
-    						var item = ("" + key.toString() + " " + (posts_dict[key].toString())).toString()     				
-    						api.sendMessage(item, message.threadID);
-  						}
-					}
+    						//var item = ("" + key.toString() + " " + (posts_dict[key].toString())).toString()     				
+    						//api.sendMessage(item, message.threadID);
+  						//}
+					//}
 				}
 				catch(err) {
 					console.log(err)
