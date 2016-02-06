@@ -90,11 +90,13 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					console.log(sortable)
 					sortable.sort(function(a, b) {return b[1] - a[1]})
 					console.log(sortable)
+					var item = ""
 					for (var i=0; i < sortable.length; i++) {					    
-						console.log(sortable[i]);
-					    var item = ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString()).toString();
-					    api.sendMessage(item, message.threadID);
+						
+					    var item += ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString() + "\n").toString();
+					    
 					}
+					api.sendMessage(item, message.threadID);
 					
 					
 					
