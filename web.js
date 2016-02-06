@@ -102,6 +102,17 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					}
 					api.sendMessage(item, message.threadID);
 					
+					try {
+    	    			for (var key in posts_dict) {
+							if (posts_dict.hasOwnProperty(key)) {
+    							posts_dict[key] = 0;
+		  					}
+						}
+					}
+					catch(err) {
+						console.log(err)
+					}
+					
 					
 					
     	    	
