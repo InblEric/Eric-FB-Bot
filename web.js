@@ -24,7 +24,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
  
     api.listen(function callback(err, message) {
     
-    		if (message.senderName in posts_dict) {
+    		if (posts_dict[message.senderName]) {
 	    		posts_dict[message.senderName]++;
 	    	} else {
 	    		posts_dict[message.senderName] = 1;
