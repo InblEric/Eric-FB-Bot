@@ -3,6 +3,7 @@ var nflScores = require("nfl_scores");
 var weather = require("weather-js")
 var weather_dict = {}
 var posts_dict = {}
+var posts = 0
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -25,6 +26,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     api.listen(function callback(err, message) {
     
     		try {
+    			posts++;
     			var sender = (message.senderName).toString();    			
     			if (posts_dict.hasOwnProperty((message.senderName).toString())) {
 	    			posts_dict[(message.senderName).toString()]++;
@@ -37,7 +39,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				console.log(err)
 			}
     
-	    	if(message.body === 'test') {
+	    	/*if(message.body === 'test') {
 	    		try {
 					var item = (posts_dict[(message.senderName).toString()]).toString()       	      
     		        api.sendMessage(item, message.threadID);	
@@ -45,9 +47,9 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     		    catch(err) {
     		    	console.log(err)
     		    }
-    	    }
+    	    }*/
     	    
-    	    if(message.body === 'reset') {
+    	    /*if(message.body === 'reset') {
     	    	try {
     	    		for (var key in posts_dict) {
 						if (posts_dict.hasOwnProperty(key)) {
@@ -58,9 +60,11 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				catch(err) {
 					console.log(err)
 				}
-    	    }
+    	    }*/
     	    
-    	    if(message.body === 'stats') {
+    	    //if(message.body === 'stats') {
+    	    if (posts >= 25) {
+    	        posts = 0;
     	    	try {
     	    		/*
     	    		// Create items array
@@ -90,7 +94,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					console.log(sortable)
 					sortable.sort(function(a, b) {return b[1] - a[1]})
 					console.log(sortable)
-					var item = ""
+					var item = "Top posters in last 25 posts:\n"
 					for (var i=0; i < sortable.length; i++) {					    
 						
 					    item = item + ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString() + "\n").toString();
