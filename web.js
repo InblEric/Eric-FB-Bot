@@ -77,8 +77,8 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    	
     	    		for (var i=0; i < items.length; i++) {
 					    console.log(items[i]);
-					    //var item = ("" + person[0].toString() + ": " + person[1].toString()).toString();
-					    api.sendMessage(items[i], message.threadID);
+					    var item = ("" + items[i][0].toString() + ": " + items[i][1].toString()).toString();
+					    api.sendMessage(item, message.threadID);
 					}
     	    	
 	    	    	//for (var key in posts_dict) {
