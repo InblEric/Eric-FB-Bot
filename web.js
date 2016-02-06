@@ -24,7 +24,6 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
  
     api.listen(function callback(err, message) {
     
-    
     		try {
     			var sender = (message.senderName).toString();    			
     			if (posts_dict.hasOwnProperty((message.senderName).toString())) {
@@ -38,13 +37,6 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 				console.log(err)
 			}
     
-    
-    		//
-    
-    		
-    
-    		
-	    	
 	    	if(message.body === 'test') {
 	    		try {
 					var item = (posts_dict[(message.senderName).toString()]).toString()       	      
@@ -53,6 +45,14 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     		    catch(err) {
     		    	console.log(err)
     		    }
+    	    }
+    	    
+    	    if(message.body === 'reset') {
+    	    	for (var key in posts_dict) {
+					if (posts_dict.hasOwnProperty(key)) {
+    					posts_dict[key] = 0;
+  					}
+				}
     	    }
     
 	        if(message.body === 'Matt Fact') {
