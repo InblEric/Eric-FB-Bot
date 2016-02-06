@@ -93,7 +93,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					var item = ""
 					for (var i=0; i < sortable.length; i++) {					    
 						
-					    var item += ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString() + "\n").toString();
+					    item = item + ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString() + "\n").toString();
 					    
 					}
 					api.sendMessage(item, message.threadID);
