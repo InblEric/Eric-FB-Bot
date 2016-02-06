@@ -62,7 +62,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    
     	    if(message.body === 'stats') {
     	    	try {
-    	    	
+    	    		/*
     	    		// Create items array
 					var items = Object.keys(posts_dict).map(function(key) {
 					    return [key, posts_dict[key]];
@@ -72,14 +72,29 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					items.sort(function(first, second) {
 					    return second[1] - first[1];
 					});
-					
-					console.log(items.slice(0, 1));
+				
     	    	
     	    		for (var i=0; i < items.length; i++) {
 					    console.log(items[i]);
 					    var item = ("" + items[i][0].toString() + ": " + items[i][1].toString()).toString();
 					    api.sendMessage(item, message.threadID);
 					}
+					
+					
+					*/
+					
+					var sortable = [];
+					for (var person in posts_dict)
+				    	sortable.push([person, posts_dict[person]])
+					sortable.sort(function(a, b) {return b[1] - a[1]})
+					for (var i=0; i < sortable.length; i++) {
+					    console.log(sortable[i]);
+					    var item = ("" + sortable[i][0].toString() + ": " + sortable[i][1].toString()).toString();
+					    api.sendMessage(item, message.threadID);
+					}
+					
+					
+					
     	    	
 	    	    	//for (var key in posts_dict) {
 						//if (posts_dict.hasOwnProperty(key)) {
