@@ -65,28 +65,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	    //if(message.body === 'stats') {
     	    if (posts >= 100) {
     	        posts = 0;
-    	    	try {
-    	    		/*
-    	    		// Create items array
-					var items = Object.keys(posts_dict).map(function(key) {
-					    return [key, posts_dict[key]];
-					});
-
-					// Sort the array based on the second element
-					items.sort(function(first, second) {
-					    return second[1] - first[1];
-					});
-				
-    	    	
-    	    		for (var i=0; i < items.length; i++) {
-					    console.log(items[i]);
-					    var item = ("" + items[i][0].toString() + ": " + items[i][1].toString()).toString();
-					    api.sendMessage(item, message.threadID);
-					}
-					
-					
-					*/
-					
+    	    	try {    	    							
 					var sortable = [];
 					for (var person in posts_dict) {
 				    	sortable.push([person, posts_dict[person]])
