@@ -119,7 +119,7 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
     	        api.sendMessage(item, message.threadID);
         	}
         
-    	    if(message.body === 'NFL') {
+    	    /*if(message.body === 'NFL') {
 				nflScores.refresh(function(err, scores) {
 				    var games = ""
 				    for (i = 0; i < scores.gms.length; i++) { 
@@ -127,7 +127,8 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 					}
 					api.sendMessage(games, message.threadID);
 				});
-	        }
+	        }*/
+	        // TODO: Add this back in next season
 	        
 	        if(message.body === 'Weather') {
 	        	weather = require("weather-js")
