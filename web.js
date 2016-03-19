@@ -18,6 +18,22 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
       console.log(JSON.stringify(row));
     });
 });
+
+pg.connect(conString, function(err, client, done) {
+  if(err) {
+    return console.error('error fetching client from pool', err);
+  }
+  client.query('SELECT $1::int AS number', ['1'], function(err, result) {
+    //call `done()` to release the client back to the pool 
+    done();
+ 
+    if(err) {
+      return console.error('error running query', err);
+    }
+    console.log(result.rows[0].number);
+    //output: 1 
+  });
+});
  
 var items=[
 "Hello from Matt Facts! Fact - Matt likes to work out a lot. Send 'STOP' to stop receiving these messages.",
@@ -48,6 +64,64 @@ login({email: process.env.EM, password: process.env.FP}, function callback (err,
 			    } else {
 	    			posts_dict[(message.senderName).toString()] = 1;
 	    		}
+	    	
+	    		
+	    		
+	    		
+	    		
+	    		// get a pg client from the connection pool
+                  pg.connect(conString, function(err, client, done) {
+                
+                    var handleError = function(err) {
+                      if(!err) return false;
+
+                      if(client){
+                        done(client);
+                      }                      
+                      return true;
+                    };
+                
+                    // handle an error from the connection
+                    if(handleError(err)) return;
+                
+                    // record the visit
+                    client.query('INSERT INTO visit (date) VALUES ($1)', [new Date()], function(err, result) {
+                
+                      // handle an error from the query
+                      if(handleError(err)) return;
+                
+                      // get the total number of visits today (including the current visit)
+                      client.query("UPDATE posts SET postsnum=postsnum+1 WHERE personname='Eric'; INSERT INTO posts (postsnum, personname) SELECT 1, 'Eric' WHERE NOT EXISTS (SELECT 1 FROM posts WHERE personname='Eric');", function(err, result) {
+                      
+                
+                        // handle an error from the query
+                        if(handleError(err)) return;
+                
+                        // return the client to the connection pool for other requests to reuse
+                        done();
+                        res.writeHead(200, {'content-type': 'text/plain'});
+                        res.end('You are visitor number ' + result.rows[0].count);
+                      });
+                    });
+                  });
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
     				
 			}
 			catch(err) {
